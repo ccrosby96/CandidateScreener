@@ -60,7 +60,6 @@ class Screener():
         if r.status_code == requests.codes.ok:
 
             json_data = json.loads(r.text)
-            print(str(len(json_data["data"])) + " companies killing people!")
             return json_data
         else:
             raise Exception(r.status_code, r.reason, url)
