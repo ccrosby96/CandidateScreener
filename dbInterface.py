@@ -114,61 +114,7 @@ class dbInterface():
         self.con.close()
 
 
-def main():
-    wrapper = dbInterface()
-    
-    test = [("GME", "Gamestop Inc.")]
-   # wrapper.con.execute("INSERT INTO ticker VALUES (?,?)",('ADGI','Adagio Therapeutics, Inc.'))
-    wrapper.con.execute("INSERT INTO mail_list VALUES ('Eddy', 'Gozdz', '2035051230','3')")
-   
-    #wrapper.con.execute("INSERT INTO hold_list VALUES (?,?)", ('ALLK','2022-02-13'))
-    t = [('FREQ','Frequency Therapeutics, Inc.'), ('MNMD','Mind Medicine (MindMed) Inc.')]
-    #wrapper.insert_ticker(t)
-    #wrapper.insert_ticker(test)
-    
-    hold = wrapper.check_for_hold('ALLK')
-    if hold:
-        print("On the hold list")
-    else:
-        print("not on hold list")
-    
-    me = wrapper.fetch_data("SELECT first_name,last_name,phone_number,carrier_id FROM mail_list WHERE first_name = 'Calvin'")[0]
 
-    print(me)
-    print(me[-1]);print(type(me[-1]))
-    print(me[2]);print(type(me[2]))
-    print(me[0])
-    print(me[1])
-
-    print(wrapper.fetch_data("SELECT * FROM hold_list"))
-    print(wrapper.fetch_data("SELECT * FROM ticker"))
-
-    testdata = [('ADGI', 'Adagio Therapeutics, Inc.'), ('ALLK', 'Allakos Inc.'), ('FREQ', 'Frequency Therapeutics, Inc.'), ('MNMD', 'Mind Medicine (MindMed) Inc.'), ('GME', 'Gamestop Inc.')]
-    
-
-    carrier = wrapper.con.execute('SELECT name FROM carrier WHERE carrier_id = ?',(me[-1],)).fetchone()[0]
-    print(carrier)
-    messenger = Messenger()
-    mes = messenger.generate_message(testdata)
-    person = Person(me[0],me[1],me[2],carrier)
-    messenger.send(person,mes)
-    wrapper.close_connection()
-
-    #testd = wrapper.execute_query("SELECT date_added FROM hold_list WHERE ")
-def view_tables():
-    wrapper = dbInterface()
-    print(wrapper.fetch_data("SELECT * FROM hold_list"))
-    print(wrapper.fetch_data("SELECT * FROM ticker"))
-    print(wrapper.fetch_data("SELECT * FROM mail_list"))
-    print(wrapper.fetch_data("SELECT * FROM carrier"))
-    wrapper.close_connection()
-
-def add_adagio():
-    wrapper = dbInterface()
-    wrapper.execute_query("INSERT INTO hold_list (symbol) VALUES ('ADGI')")
-if __name__ == "__main__":
-    #add_eddy()
-    view_tables()
 
     
     
