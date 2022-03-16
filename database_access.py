@@ -3,8 +3,7 @@ import sqlite3
 con = sqlite3.connect("screenerDB.db")
 
 cur = con.cursor()
-#cur.execute("Drop TABLE IF EXISTS hold_list")
-#Creating ticker table
+
 cur.execute(''' CREATE TABLE IF NOT EXISTS ticker
                 (symbol VARCHAR PRIMARY KEY NOT NULL,
                  name VARCHAR NOT NULL)''')
@@ -19,7 +18,6 @@ cur.execute('''CREATE TABLE IF NOT EXISTS carrier
                  name VARCHAR NOT NULL,
                  address VARCHAR NOT NULL)''')
 
-#cur.execute("DROP TABLE IF EXISTS mail_list")
 
 cur.execute('''CREATE TABLE IF NOT EXISTS mail_list
                 (persond_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,25 +34,6 @@ def hold_trigger():
                         INSERT INTO hold_list (symbol) VALUES (NEW.symbol);
                     END
                      ''')
-#hold_trigger()
-
-
-#cur.execute('''INSERT INTO carrier (name,address) VALUES ('att', '@mms.att.net')''')
-#cur.execute('''INSERT INTO carrier (name,address) VALUES ('tmobile', '@tmomail.net')''')
-#cur.execute('''INSERT INTO carrier (name,address) VALUES ('verizon', '@vtext.com')''')
-#cur.execute('''INSERT INTO carrier (name,address) VALUES ('sprint', '@page.nextel.com')''')
-
-#cur.execute('''INSERT INTO mail_list (first_name,last_name,phone_number,carrier_id) VALUES ('Calvin', 'Crosby', '2033824777', 1)''')
-#cur.execute('''INSERT INTO mail_list (first_name,last_name,phone_number,carrier_id) VALUES ('Richard', 'Crosby', '9179521795', 3)''')
-#cur.execute('''INSERT INTO mail_list (first_name,last_name,phone_number,carrier_id) VALUES ('Eddy', 'Gozdz', '2035051230', 3)''')
-
-for row in cur.execute('''SELECT * FROM carrier;'''):
-    print(row)
-
-for row in cur.execute('''SELECT * FROM mail_list;'''):
-    print(row)
-
-con.commit()
 
 con.close()
 
