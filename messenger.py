@@ -23,10 +23,8 @@ class Messenger():
             'sprint':   '@page.nextel.com'
         }
         
-        self.username = "biotechstratscreener@gmail.com"
-        self.password = "hhctfqdkthfvplfs"
-        self.mailingList = {"Calvin Crosby":['att',2033824777]}
-        self.mailList = []
+        self.username = "BOT EMAIL HERE"
+        self.password = "BOT EMAIL PASSWORD HERE"
 
     def add_receipient(self,person):
         self.mailList.append(person)
@@ -51,28 +49,4 @@ class Messenger():
         for i in ticker_list:
             s+= "ticker: " + str(i[0]) +  "\nname: " + str(i[1]) + "\n\n"
         return s
-    
-
-
-
-def main():
-    m = Messenger()
-
-    test = [("FREQ", "Frequency Therapeutics"),("ALLK", "Allakos Inc."),("SAVA","Cassava Sciences, Inc")]
-    hm = [("PRQR", "ProQR Therapeutics N.V")]
-    message = m.generate_message(test)
-
-    hur = m.generate_message(hm)
-    thing = "Hello Calvin good luck today!"
-    cal = Person("Calvin","Crosby",2033824777)
-    dad = Person("Richard", "Crosby", 9179521795,'verizon')
-    print(dad.get_carrier())
-    m.send(cal,thing)
-
-if __name__ == "__main__":
-    main()
-
-        
-    
-
-
+ 
